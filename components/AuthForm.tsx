@@ -19,7 +19,7 @@ import { z } from "zod";
 import { authFormSchema } from "@/lib/utils";
 import CustomInput from "./CustomInput";
 import { Loader2 } from "lucide-react";
-
+import Link from "next/link";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setuser] = useState(null);
@@ -43,7 +43,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
   return (
     <div className="">
-      <Meteors number={30} />
+      <Meteors number={35} />
       <section className="auth-form">
         <header className="flex flex-col gap-5 md:gap-8">
           <h1 className="text-26 font-poppins font-bold text-black-1">Atlas</h1>
@@ -97,12 +97,16 @@ const AuthForm = ({ type }: { type: string }) => {
                     label="Password"
                     placeholder="Enter your password"
                   />
+                  {type === "sign-up" && (
+                    <CustomInput
+                      control={form.control}
+                      name="password"
+                      label="Confirm password"
+                      placeholder="Renter your password"
+                    />
+                  )}
                   <div className="flex flex-col gap-4">
-                    <Button
-                      type="submit"
-                      disabled={isLoading}
-                      className=""
-                    >
+                    <Button type="submit" disabled={isLoading} className="">
                       {isLoading ? (
                         <>
                           <Loader2 size={20} className="animate-spin" /> &nbsp;
@@ -117,6 +121,20 @@ const AuthForm = ({ type }: { type: string }) => {
                   </div>
                 </form>
               </Form>
+
+              <footer className="flex justify-center gap-1">
+                <p className="text-14 font-semibold text-gray-600">
+                  {type === "sign-in"
+                    ? "Don't have an account?"
+                    : "Already have an account?"}
+                </p>
+                <Link
+                  href={type === "sign-in" ? "/sign-up" : "/sign-in"}
+                  className="form-link"
+                >
+                  {type === "sign-in" ? " Sign Up" : "Sign In"}
+                </Link>
+              </footer>
             </>
           </div>
         </header>

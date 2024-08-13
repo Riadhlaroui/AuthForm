@@ -1,3 +1,5 @@
+import Sidebar from "@/components/Sidebar";
+import TimeLine from "@/components/TimeLine";
 import Image from "next/image";
 
 export default function Home() {
@@ -5,9 +7,8 @@ export default function Home() {
    <div>
     <section className="home">
       <div className="home-content">
-        Home
+        <TimeLine />
       </div>
-      
     </section>
    </div>
   );
